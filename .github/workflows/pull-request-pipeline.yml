@@ -1,0 +1,22 @@
+name: Pull request pipeline
+
+on: pull_request
+
+jobs:
+  testing:
+    # container:
+    #   image:
+    #   volumes:
+    #     -
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Install depedency
+        run: npm install
+      - name: Unit test
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+      - name: Building web app
+        run: npm run build
