@@ -8,8 +8,14 @@ jobs:
     #   image:
     #   volumes:
     #     -
+    
     runs-on: ubuntu-latest
     steps:
+      - name: Collect Workflow Telemetry
+        uses: runforesight/foresight-workflow-kit-action@v1
+        if: ${{ always() }}
+        with:
+          api_key: 2bac4536-69d9-4240-b7df-3abc6ac08141
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
@@ -18,3 +24,9 @@ jobs:
         run: npm install
       - name: Building web app
         run: npm run build
+        
+      - name: Collect Workflow Telemetry
+        uses: runforesight/foresight-workflow-kit-action@v1
+        if: ${{ always() }}
+        with:
+          api_key: 2bac4536-69d9-4240-b7df-3abc6ac08141
