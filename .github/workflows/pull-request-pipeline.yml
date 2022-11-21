@@ -25,8 +25,11 @@ jobs:
       - name: Building web app
         run: npm run build
         
-      - name: Collect Workflow Telemetry
-        uses: runforesight/foresight-workflow-kit-action@v1
+      - name: Analyze Test and/or Coverage Results
+        uses: runforesight/foresight-test-kit-action@v1
         if: ${{ always() }}
         with:
           api_key: 2bac4536-69d9-4240-b7df-3abc6ac08141
+          test_format: Jasmine
+          test_framework: Jasmine
+
